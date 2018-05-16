@@ -1,3 +1,7 @@
+<?php
+//start session to use and store datas
+session_start();
+?>
 <!DOCTYPE HTML>
 <!--
 	Typify by TEMPLATED

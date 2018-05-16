@@ -1,3 +1,7 @@
+<?php
+//start session to use and store datas
+session_start();
+?>
 <!DOCTYPE HTML>
 <!--
 	Typify by TEMPLATED
@@ -18,12 +22,14 @@
 		<!-- Banner -->
 			<section id="banner">
 				<ul class="actions">
-					<li><a href="#" class="button special">Voir les statistiques</a></li>
+                    <li><a href="index.php" class="button special">Retour au menu</a></li>
 				</ul>
-				<p><b><u>Nouvelle partie</u></b></p>
+				<p><b><u>var_dump($_POST)</u></b></p>
 				<ul class="actions">
-					<li><a href="#" class="button special">Mode libre</a></li>
-					<li><a href="#" class="button special">Mode 5 secondes</a></li>
+					<li><a href="#" class="button special">-</a></li>
+					<li><a href="#" class="button special">-</a></li>
+                    <li><a href="#" class="button special">-</a></li>
+                    <li><a href="#" class="button special">-</a></li>
 				</ul>
 			</section>
 		<!-- Scripts -->

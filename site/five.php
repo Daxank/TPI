@@ -14,13 +14,24 @@
     <link rel="stylesheet" href="assets/css/main.css"/>
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
+    <script>
+        function valthisform() {
+            var chkd = document.FC0.checked || document.FC.c2.checked || document.FC.c3.checked || document.FC.c4.checked
+
+            if (chkd == true) {
+            }
+            else {
+                alert("please check a checkbox")
+            }
+        }
+    </script>
 </head>
 <body>
 
 <!-- Banner -->
 <section id="banner">
     <ul class="actions">
-        <li><a href="index.html" class="button special">Retour au menu</a></li>
+        <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b><u>Nouvelle partie: Mode 5 secondes</u></b></p>
     <form method=post action="#">
@@ -49,6 +60,15 @@
 <!--[if lte IE 8]>
 <script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
-
+<!-- Check if we have at least 1 checkbox checked -->
+<script>$(document).ready(function () {
+        $("form").submit(function () {
+            if ($('input:checkbox').filter(':checked').length < 1) {
+                alert("Choisissez au moins 1 livret");
+                return false;
+            }
+        });
+    });
+</script>
 </body>
 </html>

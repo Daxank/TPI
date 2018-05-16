@@ -1,3 +1,7 @@
+<?php
+//start session to use and store datas
+session_start();
+?>
 <!DOCTYPE HTML>
 <!--
 	Typify by TEMPLATED
@@ -20,7 +24,7 @@
 <!-- Banner -->
 <section id="banner">
     <ul class="actions">
-        <li><a href="index.html" class="button special">Retour au menu</a></li>
+        <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b><u>Statistiques</u></b></p>
     XX justes</br>
