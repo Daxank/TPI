@@ -1,3 +1,7 @@
+<?php
+//start session to use and store datas
+session_start();
+?>
 <!DOCTYPE HTML>
 <!--
 	Typify by TEMPLATED
@@ -14,17 +18,6 @@
     <link rel="stylesheet" href="assets/css/main.css"/>
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
-    <script>
-        function valthisform() {
-            var chkd = document.FC0.checked || document.FC.c2.checked || document.FC.c3.checked || document.FC.c4.checked
-
-            if (chkd == true) {
-            }
-            else {
-                alert("please check a checkbox")
-            }
-        }
-    </script>
 </head>
 <body>
 
@@ -34,21 +27,21 @@
         <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b><u>Nouvelle partie: Mode 5 secondes</u></b></p>
-    <form method=post action="#">
+    <form method=post action="five-problem.php">
         <h4>Choisis le(s) livret(s) que tu veux travailler:</h4>
-        <input type="checkbox" name="0" value="0" checked>0 &nbsp;
-        <input type="checkbox" name="1" value="1">1 &nbsp;
-        <input type="checkbox" name="2" value="2">2 &nbsp;
-        <input type="checkbox" name="3" value="3">3 &nbsp;<br/><br/>
-        <input type="checkbox" name="4" value="4">4 &nbsp;
-        <input type="checkbox" name="5" value="5">5 &nbsp;
-        <input type="checkbox" name="6" value="6">6 &nbsp;
-        <input type="checkbox" name="7" value="7">7 &nbsp;<br/><br/>
-        <input type="checkbox" name="8" value="8">8 &nbsp;
-        <input type="checkbox" name="9" value="9">9 &nbsp;
-        <input type="checkbox" name="10" value="10">10 &nbsp;
-        <input type="checkbox" name="11" value="11">11 &nbsp;<br/><br/>
-        <input type="checkbox" name="12" value="12">12 <br/>
+        <input type="checkbox" name="livret[0]" value="0" checked>0 &nbsp;
+        <input type="checkbox" name="livret[1]" value="1">1 &nbsp;
+        <input type="checkbox" name="livret[2]" value="2">2 &nbsp;
+        <input type="checkbox" name="livret[3]" value="3">3 &nbsp;<br/><br/>
+        <input type="checkbox" name="livret[4]" value="4">4 &nbsp;
+        <input type="checkbox" name="livret[5]" value="5">5 &nbsp;
+        <input type="checkbox" name="livret[6]" value="6">6 &nbsp;
+        <input type="checkbox" name="livret[7]" value="7">7 &nbsp;<br/><br/>
+        <input type="checkbox" name="livret[8]" value="8">8 &nbsp;
+        <input type="checkbox" name="livret[9]" value="9">9 &nbsp;
+        <input type="checkbox" name="livret[10]" value="10">10 &nbsp;
+        <input type="checkbox" name="livret[11]" value="11">11 &nbsp;<br/><br/>
+        <input type="checkbox" name="livret[12]" value="12">12 <br/>
         <br/><br/>
         <input type="submit" value="GO!" class="button special">
     </form>
@@ -64,7 +57,7 @@
 <script>$(document).ready(function () {
         $("form").submit(function () {
             if ($('input:checkbox').filter(':checked').length < 1) {
-                alert("Choisissez au moins 1 livret");
+                alert("Choisis au moins 1 livret");
                 return false;
             }
         });

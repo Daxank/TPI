@@ -1,9 +1,20 @@
 <?php
 //start session to use and store datas
 session_start();
-function deletechoice()
+function delchoice()
 {
-    unset($_POST['livret']);
+    session_destroy();
+}
+
+function timestart()
+{
+    $timestart=time();
+    $_SESSION['timestart'] = $timestart;
+}
+function timestop()
+{
+    $timestop = time();
+    $_SESSION['timestop'] = $timestop;
 }
 ?>
 <!DOCTYPE HTML>
@@ -23,24 +34,68 @@ function deletechoice()
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
 </head>
-<body>
+<body onload="timestart()">
 
 <!-- Banner -->
 <section id="banner">
     <ul class="actions">
-        <li><a href="index.php" class="button special" onclick="deletechoice()">Retour au menu</a></li>
+        <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
     </ul>
-    <p><b><u><?php
-                if (!empty($_POST['livret'])) {
-                        $randlivret = array_rand($_POST['livret']);
-                        echo $randlivret;
-                } ?></u></b></p>
-    <ul class="actions">
-        <li><a href="#" class="button special">-</a></li>
-        <li><a href="#" class="button special">-</a></li>
-        <li><a href="#" class="button special">-</a></li>
-        <li><a href="#" class="button special">-</a></li>
-    </ul>
+    <p><b>   <?php
+            $randmult = rand(0, 12);
+            if (!empty($_POST['livret'])) {
+                $_SESSION['livret'] = $_POST['livret'];
+                $randlivret = array_rand($_POST['livret']);
+            } elseif (!empty($_SESSION['livret'])) {
+                $randlivret = array_rand($_SESSION['livret']);
+            }
+            echo "$randmult x $randlivret = ?" ?> </b></p>
+    <form method=post action="free-result.php" onsubmit="timestop()">
+        <?php
+        $trueanswer = $randmult * $randlivret;
+        $_SESSION['trueanswer'] = $trueanswer;
+        $wrong0 = $randlivret + 1;
+        $wrong1 = $randmult * $randlivret - $randlivret;
+        $wrong2 = $randmult * $randlivret + $randlivret;
+        $wrong3 = $randmult * $randlivret + $randlivret + $randlivret;
+        if ($trueanswer == 0) {
+
+            $randorder0 = rand(1, 2);
+            if ($randorder0 == 1) {
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='$wrong0' class='button special'>";
+            } else {
+                echo "<input type='submit' name='wrong' value='$wrong0' class='button special'> &nbsp;";
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'>";
+            }
+        } else {
+
+            $randorder = rand(1, 4);
+            if ($randorder == 1) {
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='$wrong1' class='button special'> <br/><br/>";
+                echo "<input type='submit' name='wrong' value='$wrong2' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='$wrong3' class='button special'>";
+            } elseif ($randorder == 2) {
+                echo "<input type='submit' name='wrong' value='$wrong1 ' class='button special'> &nbsp;";
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'> <br/><br/>";
+                echo "<input type='submit' name='wrong' value='$wrong3' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='$wrong2' class='button special'>";
+            } elseif ($randorder == 3) {
+                echo "<input type='submit' name='wrong' value='$wrong2' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='$wrong3' class='button special'> <br/><br/>";
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='$wrong1' class='button special'>";
+            } elseif ($randorder == 4) {
+                echo "<input type='submit' name='wrong' value='$wrong3' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='$wrong2' class='button special'> <br/><br/>";
+                echo "<input type='submit' name='wrong' value='$wrong1' class='button special'> &nbsp;";
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'>";
+            }
+        }
+
+        ?>
+    </form>
 </section>
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>

@@ -29,19 +29,19 @@ session_start();
     <p><b><u>Nouvelle partie: Mode libre</u></b></p>
     <form method=post action="free-problem.php">
         <h4>Choisis le(s) livret(s) que tu veux travailler:</h4>
-        <input type="checkbox" name="livret[]" value="0" checked>0 &nbsp;
-        <input type="checkbox" name="livret[]" value="1">1 &nbsp;
-        <input type="checkbox" name="livret[]" value="2">2 &nbsp;
-        <input type="checkbox" name="livret[]" value="3">3 &nbsp;<br/><br/>
-        <input type="checkbox" name="livret[]" value="4">4 &nbsp;
-        <input type="checkbox" name="livret[]" value="5">5 &nbsp;
-        <input type="checkbox" name="livret[]" value="6">6 &nbsp;
-        <input type="checkbox" name="livret[]" value="7">7 &nbsp;<br/><br/>
-        <input type="checkbox" name="livret[]" value="8">8 &nbsp;
-        <input type="checkbox" name="livret[]" value="9">9 &nbsp;
-        <input type="checkbox" name="livret[]" value="10">10 &nbsp;
-        <input type="checkbox" name="livret[]" value="11">11 &nbsp;<br/><br/>
-        <input type="checkbox" name="livret[]" value="12">12 <br/>
+        <input type="checkbox" name="livret[0]" value="0" checked>0 &nbsp;
+        <input type="checkbox" name="livret[1]" value="1">1 &nbsp;
+        <input type="checkbox" name="livret[2]" value="2">2 &nbsp;
+        <input type="checkbox" name="livret[3]" value="3">3 &nbsp;<br/><br/>
+        <input type="checkbox" name="livret[4]" value="4">4 &nbsp;
+        <input type="checkbox" name="livret[5]" value="5">5 &nbsp;
+        <input type="checkbox" name="livret[6]" value="6">6 &nbsp;
+        <input type="checkbox" name="livret[7]" value="7">7 &nbsp;<br/><br/>
+        <input type="checkbox" name="livret[8]" value="8">8 &nbsp;
+        <input type="checkbox" name="livret[9]" value="9">9 &nbsp;
+        <input type="checkbox" name="livret[10]" value="10">10 &nbsp;
+        <input type="checkbox" name="livret[11]" value="11">11 &nbsp;<br/><br/>
+        <input type="checkbox" name="livret[12]" value="12">12 <br/>
         <br/><br/>
         <input type="submit" value="GO!" class="button special">
     </form>
@@ -57,7 +57,7 @@ session_start();
 <script>$(document).ready(function () {
         $("form").submit(function () {
             if ($('input:checkbox').filter(':checked').length < 1) {
-                alert("Choisissez au moins 1 livret");
+                alert("Choisis au moins 1 livret");
                 return false;
             }
         });
