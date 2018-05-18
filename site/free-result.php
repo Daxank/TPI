@@ -35,22 +35,18 @@ $_SESSION['timestop'] = time();
     <p><b><?php
             $result = $_SESSION['trueanswer'];
             $timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
+            if ($timetaken <= 1) { //choice between plural and singular
+                $wordsecond = "seconde";
+            } else {
+                $wordsecond = "secondes";
+            }
             if (!empty($_POST['true'])) {
-                echo "Bravo! La réponse était bien <u>$result</u> </br> Tu as trouvé en $timetaken";
-                if ($timetaken <= 1) { //choice between plural and singular
-                    echo " seconde";
-                } else {
-                    echo " secondes";
-                }
+                echo "Bravo! La réponse était bien <u>$result</u> </br> Tu as trouvé en $timetaken $wordsecond";
+
             } else if (!empty($_POST['wrong'])) {
                 echo "<u>Dommage... La réponse était $result</u>";
             } else if (!is_null($_POST['true'])) { //we need this 'else if' for when trueanswer=0 because otherwise, $_POST['true'] is "empty"
-                echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en $timetaken";
-                if ($timetaken <= 1) { //choice between plural and singular
-                    echo " seconde";
-                } else {
-                    echo " secondes";
-                }
+                echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en $timetaken $wordsecond";
             }
 
             ?></b></p>
