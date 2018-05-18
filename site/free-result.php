@@ -6,6 +6,7 @@ function delchoice()
     session_destroy();
 }
 
+$_SESSION['timestop'] = time();
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -32,15 +33,26 @@ function delchoice()
         <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
     </ul>
     <p><b><?php
-            $timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
             $result = $_SESSION['trueanswer'];
+            $timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
             if (!empty($_POST['true'])) {
-                echo "Bravo! La réponse était bien $result </br> Tu as trouvé en $timetaken";
+                echo "Bravo! La réponse était bien <u>$result</u> </br> Tu as trouvé en $timetaken";
+                if ($timetaken <= 1) { //choice between plural and singular
+                    echo " seconde";
+                } else {
+                    echo " secondes";
+                }
             } else if (!empty($_POST['wrong'])) {
                 echo "<u>Dommage... La réponse était $result</u>";
             } else if (!is_null($_POST['true'])) { //we need this 'else if' for when trueanswer=0 because otherwise, $_POST['true'] is "empty"
-                echo "Bravo! La réponse était bien $result </br> Tu as trouvé en $timetaken";
+                echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en $timetaken";
+                if ($timetaken <= 1) { //choice between plural and singular
+                    echo " seconde";
+                } else {
+                    echo " secondes";
+                }
             }
+
             ?></b></p>
     <ul class="actions">
         <li><a href="free-problem.php" class="button special">Je continue</a></li>

@@ -5,17 +5,7 @@ function delchoice()
 {
     session_destroy();
 }
-
-function timestart()
-{
-    $timestart=time();
-    $_SESSION['timestart'] = $timestart;
-}
-function timestop()
-{
-    $timestop = time();
-    $_SESSION['timestop'] = $timestop;
-}
+$_SESSION['timestart'] = time();
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -34,7 +24,7 @@ function timestop()
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
 </head>
-<body onload="timestart()">
+<body>
 
 <!-- Banner -->
 <section id="banner">
@@ -50,11 +40,10 @@ function timestop()
                 $randlivret = array_rand($_SESSION['livret']);
             }
             echo "$randmult x $randlivret = ?" ?> </b></p>
-    <form method=post action="free-result.php" onsubmit="timestop()">
+    <form method=post action="free-result.php"">
         <?php
         $trueanswer = $randmult * $randlivret;
         $_SESSION['trueanswer'] = $trueanswer;
-        $wrong0 = $randlivret + 1;
         $wrong1 = $randmult * $randlivret - $randlivret;
         $wrong2 = $randmult * $randlivret + $randlivret;
         $wrong3 = $randmult * $randlivret + $randlivret + $randlivret;
@@ -63,9 +52,9 @@ function timestop()
             $randorder0 = rand(1, 2);
             if ($randorder0 == 1) {
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
-                echo "<input type='submit' name='wrong' value='$wrong0' class='button special'>";
+                echo "<input type='submit' name='wrong' value='1' class='button special'>";
             } else {
-                echo "<input type='submit' name='wrong' value='$wrong0' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='1' class='button special'> &nbsp;";
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'>";
             }
         } else {
