@@ -36,7 +36,7 @@ $_SESSION['timestop'] = time();
             $result = $_SESSION['trueanswer'];
             $timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
             if ($timetaken <= 1) { //choice between plural and singular
-                $wordsecond = "seconde";
+                $wordsecond = "seconde... incroyable!";
             } else {
                 $wordsecond = "secondes";
             }

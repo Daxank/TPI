@@ -5,6 +5,7 @@ function delchoice()
 {
     session_destroy();
 }
+
 $_SESSION['timestart'] = time();
 ?>
 <!DOCTYPE HTML>
@@ -40,20 +41,34 @@ $_SESSION['timestart'] = time();
                 $randlivret = array_rand($_SESSION['livret']);
             }
             echo "$randmult x $randlivret = ?" ?> </b></p>
-    <form method=post action="free-result.php"">
+    <form method=post action="free-result.php">
         <?php
         $trueanswer = $randmult * $randlivret;
         $_SESSION['trueanswer'] = $trueanswer;
         $wrong1 = $randmult * $randlivret - $randlivret;
         $wrong2 = $randmult * $randlivret + $randlivret;
         $wrong3 = $randmult * $randlivret + $randlivret + $randlivret;
+        $wrong0 = $randlivret + $randmult;
         if ($trueanswer == 0) {
 
-            $randorder0 = rand(1, 2);
-            if ($randorder0 == 1) {
+            $randorder0 = rand(1, 3);
+            $randorder02 = rand(1, 2);
+            if (($randorder0 == 1 && $wrong0 > 1)) {
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
+                echo "<input type='submit' name='wrong' value='1' class='button special'> <br/><br/>";
+                echo "<input type='submit' name='wrong' value='$wrong0' class='button special'>";
+            } elseif (($randorder0 == 2 && $wrong0 > 1)) {
+                echo "<input type='submit' name='wrong' value='$wrong0' class='button special'> &nbsp;";
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'> <br/><br/>";
+                echo "<input type='submit' name='wrong' value='1' class='button special'>";
+            } elseif (($randorder0 == 3 && $wrong0 > 1)) {
+                echo "<input type='submit' name='wrong' value='1' class='button special'>&nbsp;";
+                echo " <input type='submit' name='wrong' value='$wrong0' class='button special'> <br/><br/>";
+                echo "<input type='submit' name='true' value='$trueanswer' class='button special'>";
+            } elseif (($randorder02 == 1 && $wrong0<= 1)) {
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
                 echo "<input type='submit' name='wrong' value='1' class='button special'>";
-            } else {
+            } elseif (($randorder02 == 2 && $wrong0<= 1)) {
                 echo "<input type='submit' name='wrong' value='1' class='button special'> &nbsp;";
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'>";
             }
