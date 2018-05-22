@@ -42,7 +42,7 @@ session_start();
         <input type="checkbox" name="livret[10]" value="10">10 &nbsp;
         <input type="checkbox" name="livret[11]" value="11">11 &nbsp;
         <input type="checkbox" name="livret[12]" value="12">12 <br/>
-        <br/>
+        <br/><br/>
         <input type="submit" value="GO!" class="button special">
     </form>
 </section>
