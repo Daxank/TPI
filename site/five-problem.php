@@ -7,6 +7,11 @@ function delchoice()
 }
 
 $_SESSION['timestart'] = time();
+function submit()
+{
+    $_POST['click'] = "click";
+}
+
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -21,6 +26,20 @@ $_SESSION['timestart'] = time();
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--[if lte IE 8]>
     <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <script type="text/javascript">
+        seconds = 4;
+
+        function decreaseTime() {
+            document.frm.click.value = seconds;
+            seconds--;
+            setTimeout('decreaseTime()', 1000);
+        }
+
+        window.onload = function () {
+            document.frm.submit.value = seconds;
+            setTimeout('decreaseTime()', 1000);
+        }
+    </script>
     <link rel="stylesheet" href="assets/css/main.css"/>
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
@@ -28,7 +47,7 @@ $_SESSION['timestart'] = time();
 <body>
 
 <!-- Banner -->
-<section id="banner">
+<section id="banner" onload="<?php header("refresh:5;url=five-result.php"); ?> decreaseTime()">
     <ul class="actions">
         <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
     </ul>
@@ -40,12 +59,16 @@ $_SESSION['timestart'] = time();
             } elseif (!empty($_SESSION['livret'])) {
                 $randlivret = array_rand($_SESSION['livret']);
             }
+            $_SESSION['answerfive'] = $randmult * $randlivret;
             echo "$randmult x $randlivret = ?" ?> </b></p>
-    <form method=post action="five-result.php">
+
+    <form name=frm method=post action="five-result.php">
+        <input type='submit' name='click' value="5" class='button special'>
     </form>
 </section>
 <!--Scripts -->
-<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.min.js">
+</script>
 <script src="assets/js/skel.min.js"></script>
 <script src="assets/js/util.js"></script>
 <!--[if lte IE 8]>

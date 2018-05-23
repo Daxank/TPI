@@ -33,26 +33,23 @@ $_SESSION['timestop'] = time();
         <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
     </ul>
     <p><b><?php
-            $result = $_SESSION['trueanswer'];
+            $result = $_SESSION['answerfive'];
             $timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
             if ($timetaken <= 1) { //choice between plural and singular
                 $wordsecond = "seconde";
             } else {
                 $wordsecond = "secondes";
             }
-            if (!empty($_POST['true'])) {
-                echo "<u>$result</u> </br> As-tu trouvé en $timetaken $wordsecond?";
-
-            } else if (!empty($_POST['wrong'])) {
-                echo "<u>Dommage... La réponse était $result</u>";
-            } else if (!is_null($_POST['true'])) { //we need this 'else if' for when trueanswer=0 because otherwise, $_POST['true'] is "empty"
-                echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en $timetaken $wordsecond";
+            if (!empty($_POST['click'])) {
+                echo "<u>$result</u> <br/></br> As-tu trouvé en $timetaken $wordsecond?";
+            } else {
+                echo "<u>$result</u>";
             }
 
             ?></b></p>
     <ul class="actions">
-        <li><a href="free-problem.php" class="button special">J'ai juste!</a></li>
-        <li><a href="free-problem.php" class="button special">J'ai faux...</a></li>
+        <li><a href="five-problem.php" class="button special">J'ai juste!</a></li>
+        <li><a href="five-problem.php" class="button special">J'ai faux...</a></li>
     </ul>
 </section>
 <!-- Scripts -->
