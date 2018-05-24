@@ -7,6 +7,14 @@ function delchoice()
 }
 
 $_SESSION['timestop'] = time();
+$timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
+$minutes = 0;
+$seconds = 0;
+while ($timetaken >= 60) {
+    $timetaken = $timetaken - 60;
+    $minutes++;
+}
+$seconds = $timetaken;
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -34,21 +42,16 @@ $_SESSION['timestop'] = time();
     </ul>
     <p><b><?php
             $result = $_SESSION['trueanswer'];
-            $timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
-            if ($timetaken <= 1) { //choice between plural and singular
-                $wordsecond = "seconde... incroyable!";
-            } else {
-                $wordsecond = "secondes";
-            }
-            if (!empty($_POST['true'])) {
-                echo "Bravo! La réponse était bien <u>$result</u> </br> Tu as trouvé en $timetaken $wordsecond";
+            if (!empty($_POST['true']) && ($seconds + $minutes != 0)) {
+                echo "Bravo! La réponse était bien <u>$result</u> </br> Tu as trouvé en $minutes:$seconds";
 
             } else if (!empty($_POST['wrong'])) {
                 echo "<u>Dommage... La réponse était $result</u>";
-            } else if (!is_null($_POST['true'])) { //we need this 'else if' for when trueanswer=0 because otherwise, $_POST['true'] is "empty"
-                echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en $timetaken $wordsecond";
+            } else if (!is_null($_POST['true']) && ($seconds + $minutes != 0)) { //we need this 'else if' for when trueanswer=0 because otherwise, $_POST['true'] is "empty"
+                echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en $minutes:$seconds";
+            } else {
+                echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en moins d'une seconde!";
             }
-
             ?></b></p>
     <ul class="actions">
         <li><a href="free-problem.php" class="button special">Je continue</a></li>

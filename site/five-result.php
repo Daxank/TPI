@@ -7,6 +7,37 @@ function delchoice()
 }
 
 $_SESSION['timestop'] = time();
+$iduser = $_COOKIE['user'];
+function registerstatsright()
+{
+    $data = [];
+    $data[] = $iduser;
+    $data[] = date();
+    $data[] = time();
+    $data[] = $_SESSION['mode'];
+    $data[] = $_SESSION['mult'];
+    $data[] = $_SESSION['livret'];
+    $data[] = 1;
+    $data[] = $timetaken;
+    $handle = fopen('stats.csv', 'a+');
+    fputcsv($handle, $data);
+    fclose($handle);
+}
+function registerstatswrong()
+{
+    $data = [];
+    $data[] = $iduser;
+    $data[] = date();
+    $data[] = time();
+    $data[] = $_SESSION['mode'];
+    $data[] = $_SESSION['randmult'];
+    $data[] = $_SESSION['randlivret'];
+    $data[] = 0;
+    $data[] = $timetaken;
+    $handle = fopen('stats.csv', 'a+');
+    fputcsv($handle, $data);
+    fclose($handle);
+}
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -30,7 +61,7 @@ $_SESSION['timestop'] = time();
 <!-- Banner -->
 <section id="banner">
     <ul class="actions">
-        <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
+        <li><a href="index.php" class="button special" onclick="<?php delchoice() ?>">Retour au menu</a></li>
     </ul>
     <p><b><?php
             $result = $_SESSION['answerfive'];
@@ -40,16 +71,18 @@ $_SESSION['timestop'] = time();
             } else {
                 $wordsecond = "secondes";
             }
-            if (!empty($_POST['click'])) {
+            if (!empty($_POST['click']) && ($timetaken!=0)) {
                 echo "<u>$result</u> <br/></br> As-tu trouvé en $timetaken $wordsecond?";
+            } else if (!empty($_POST['click']) && ($timetaken==0)) {
+                echo "<u>$result</u> <br/></br> As-tu trouvé en moins d'une seconde?!";
             } else {
                 echo "<u>$result</u>";
             }
 
             ?></b></p>
     <ul class="actions">
-        <li><a href="five-problem.php" class="button special">J'ai juste!</a></li>
-        <li><a href="five-problem.php" class="button special">J'ai faux...</a></li>
+        <li><a href="five-problem.php" class="button special" onclick="<?php registerstatsright() ?>">J'ai juste!</a></li>
+        <li><a href="five-problem.php" class="button special" onclick="<?php registerstatswrong() ?>">J'ai faux...</a></li>
     </ul>
 </section>
 <!-- Scripts -->

@@ -6,6 +6,7 @@ function delchoice()
     session_destroy();
 }
 
+$_SESSION['mode'] = 5;
 $_SESSION['timestart'] = time();
 function submit()
 {
@@ -47,7 +48,7 @@ function submit()
 <body>
 
 <!-- Banner -->
-<section id="banner" onload="<?php header("refresh:5;url=five-result.php"); ?> decreaseTime()">
+<section id="banner" onload="<?php header("refresh:5;url=five-result.php"); ?>">
     <ul class="actions">
         <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
     </ul>
@@ -60,7 +61,10 @@ function submit()
                 $randlivret = array_rand($_SESSION['livret']);
             }
             $_SESSION['answerfive'] = $randmult * $randlivret;
-            echo "$randmult x $randlivret = ?" ?> </b></p>
+            echo "$randmult x $randlivret = ?";
+            $_SESSION['randmult'] = $randmult;
+            $_SESSION['randlivret'] = $randlivret;
+            ?> </b></p>
 
     <form name=frm method=post action="five-result.php">
         <input type='submit' name='click' value="5" class='button special'>
