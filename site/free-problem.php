@@ -1,12 +1,9 @@
 <?php
 //start session to use and store datas
 session_start();
-function delchoice()
-{
-    session_destroy();
-}
 
 $_SESSION['timestart'] = time();
+$_SESSION['mode'] = "free";
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -30,7 +27,7 @@ $_SESSION['timestart'] = time();
 <!-- Banner -->
 <section id="banner">
     <ul class="actions">
-        <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
+        <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b>   <?php
             $randmult = rand(0, 12);
@@ -40,7 +37,13 @@ $_SESSION['timestart'] = time();
             } elseif (!empty($_SESSION['livret'])) {
                 $randlivret = array_rand($_SESSION['livret']);
             }
-            echo "$randmult x $randlivret = ?" ?> </b></p>
+            $_SESSION['answerfree'] = $randmult * $randlivret;
+            echo "$randmult x $randlivret = ?";
+            $chosenmult = $randmult;    //if we simply use $_SESSION['chosenmult'] = $randmult it doesn't work as we'd expect (sometimes the numbers are right, other times they aren't) so we have to store the result before we assign it to the session
+            $_SESSION['chosenmult'] = $chosenmult;
+            $chosenlivret = $randlivret;
+            $_SESSION['chosenlivret'] = $chosenlivret;
+            ?> </b></p>
     <form method=post action="free-result.php">
         <?php
         $trueanswer = $randmult * $randlivret;
@@ -53,7 +56,7 @@ $_SESSION['timestart'] = time();
 
             $randorder0 = rand(1, 3);
             $randorder02 = rand(1, 2);
-            if (($randorder0 == 1 && $wrong0 > 1)) {
+            if (($randorder0 == 1 && $wrong0 > 1)) {    //this is to randomize the order of answers for the problems that contain 0 but aren't 0*0 or 0*1
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
                 echo "<input type='submit' name='wrong' value='1' class='button special'> <br/><br/>";
                 echo "<input type='submit' name='wrong' value='$wrong0' class='button special'>";
@@ -65,17 +68,17 @@ $_SESSION['timestart'] = time();
                 echo "<input type='submit' name='wrong' value='1' class='button special'>&nbsp;";
                 echo " <input type='submit' name='wrong' value='$wrong0' class='button special'> <br/><br/>";
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'>";
-            } elseif (($randorder02 == 1 && $wrong0<= 1)) {
+            } elseif (($randorder02 == 1 && $wrong0 <= 1)) {    //this is to randomize the order of answers for the problems that are 0*0 or 0*1
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
                 echo "<input type='submit' name='wrong' value='1' class='button special'>";
-            } elseif (($randorder02 == 2 && $wrong0<= 1)) {
+            } elseif (($randorder02 == 2 && $wrong0 <= 1)) {
                 echo "<input type='submit' name='wrong' value='1' class='button special'> &nbsp;";
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'>";
             }
         } else {
 
             $randorder = rand(1, 4);
-            if ($randorder == 1) {
+            if ($randorder == 1) {  //this is to randomize the order of answers for any problem that doesn't contain 0
                 echo "<input type='submit' name='true' value='$trueanswer' class='button special'> &nbsp;";
                 echo "<input type='submit' name='wrong' value='$wrong1' class='button special'> <br/><br/>";
                 echo "<input type='submit' name='wrong' value='$wrong2' class='button special'> &nbsp;";

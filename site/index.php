@@ -5,6 +5,8 @@ if ($_COOKIE['user'] != null) {
     setcookie('user', $name, time() + 365 * 24 * 3600, null, null, false, true);
     header("Refresh:0"); //refresh page to avoid showing error for $_COOKIE['user'] being undefined
 }
+session_start();
+session_destroy();
 ?>
 <!DOCTYPE HTML>
 <!--

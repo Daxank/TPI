@@ -1,43 +1,8 @@
 <?php
 //start session to use and store datas
 session_start();
-function delchoice()
-{
-    session_destroy();
-}
 
 $_SESSION['timestop'] = time();
-$iduser = $_COOKIE['user'];
-function registerstatsright()
-{
-    $data = [];
-    $data[] = $iduser;
-    $data[] = date();
-    $data[] = time();
-    $data[] = $_SESSION['mode'];
-    $data[] = $_SESSION['mult'];
-    $data[] = $_SESSION['livret'];
-    $data[] = 1;
-    $data[] = $timetaken;
-    $handle = fopen('stats.csv', 'a+');
-    fputcsv($handle, $data);
-    fclose($handle);
-}
-function registerstatswrong()
-{
-    $data = [];
-    $data[] = $iduser;
-    $data[] = date();
-    $data[] = time();
-    $data[] = $_SESSION['mode'];
-    $data[] = $_SESSION['randmult'];
-    $data[] = $_SESSION['randlivret'];
-    $data[] = 0;
-    $data[] = $timetaken;
-    $handle = fopen('stats.csv', 'a+');
-    fputcsv($handle, $data);
-    fclose($handle);
-}
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -46,6 +11,47 @@ function registerstatswrong()
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
+<?php
+function registerstatsright()
+{
+    $data = []; //transforms data in array
+    $data[] = $_COOKIE['user']; //uses to username set by the cookie to register to help identify datas to their users
+    $data[] = date('j-n-y');    //registers the date
+    $data[] = date('H:i:s:e');  //registers the hour and the timezone
+    $data[] = $_SESSION['mode'];    //registers the mode
+    $data[] = $_SESSION['chosenmult'];  //registers the multiplier of the problem
+    $data[] = $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
+    $data[] = "juste";  //registers that the user answered right
+    $data[] = $_SESSION['timestop'] - $_SESSION['timestart'];   //registers the time it took to finish the problem
+    $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
+    fputcsv($handle, $data);    //writes the data[] array in stats.csv
+    fclose($handle);    //closes stats.csv
+    header('Location: five-problem.php');
+}
+
+function registerstatswrong()
+{
+    $data = []; //transforms data in array
+    $data[] = $_COOKIE['user']; //uses to username set by the cookie to register to help identify datas to their users
+    $data[] = date('j-n-y');    //registers the date
+    $data[] = date('H:i:s:e');  //registers the hour and the timezone
+    $data[] = $_SESSION['mode'];    //registers the mode
+    $data[] = $_SESSION['chosenmult'];  //registers the multiplier of the problem
+    $data[] = $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
+    $data[] = "faux"; //registers that the user answered wrong
+    $data[] = $_SESSION['timestop'] - $_SESSION['timestart'];   //registers the time it took to finish the problem
+    $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
+    fputcsv($handle, $data);    //writes the data[] array in stats.csv
+    fclose($handle);    //closes stats.csv
+    header('Location: five-problem.php');
+}
+
+if (isset($_GET['true'])) {
+    registerstatsright();
+} else if (isset($_GET['wrong'])) {
+    registerstatswrong();
+}
+?>
 <head>
     <title>Multiplix, la web app pour réviser ses livrets de multiplication</title>
     <meta charset="utf-8"/>
@@ -61,7 +67,7 @@ function registerstatswrong()
 <!-- Banner -->
 <section id="banner">
     <ul class="actions">
-        <li><a href="index.php" class="button special" onclick="<?php delchoice() ?>">Retour au menu</a></li>
+        <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b><?php
             $result = $_SESSION['answerfive'];
@@ -71,9 +77,9 @@ function registerstatswrong()
             } else {
                 $wordsecond = "secondes";
             }
-            if (!empty($_POST['click']) && ($timetaken!=0)) {
+            if (!empty($_POST['click']) && ($timetaken != 0)) {
                 echo "<u>$result</u> <br/></br> As-tu trouvé en $timetaken $wordsecond?";
-            } else if (!empty($_POST['click']) && ($timetaken==0)) {
+            } else if (!empty($_POST['click']) && ($timetaken == 0)) {
                 echo "<u>$result</u> <br/></br> As-tu trouvé en moins d'une seconde?!";
             } else {
                 echo "<u>$result</u>";
@@ -81,8 +87,8 @@ function registerstatswrong()
 
             ?></b></p>
     <ul class="actions">
-        <li><a href="five-problem.php" class="button special" onclick="<?php registerstatsright() ?>">J'ai juste!</a></li>
-        <li><a href="five-problem.php" class="button special" onclick="<?php registerstatswrong() ?>">J'ai faux...</a></li>
+        <li><a href="five-result.php?true=true" class="button special">J'ai juste!</a></li>
+        <li><a href="five-result.php?wrong=true" class="button special">J'ai faux...</a></li>
     </ul>
 </section>
 <!-- Scripts -->

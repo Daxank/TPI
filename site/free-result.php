@@ -1,10 +1,6 @@
 <?php
 //start session to use and store datas
 session_start();
-function delchoice()
-{
-    session_destroy();
-}
 
 $_SESSION['timestop'] = time();
 $timetaken = $_SESSION['timestop'] - $_SESSION['timestart'];
@@ -15,6 +11,38 @@ while ($timetaken >= 60) {
     $minutes++;
 }
 $seconds = $timetaken;
+function registerstatsright()
+{
+    $data = []; //transforms data in array
+    $data[] = $_COOKIE['user']; //uses to username set by the cookie to register to help identify datas to their users
+    $data[] = date('j-n-y');    //registers the date
+    $data[] = date('H:i:s:e');  //registers the hour and the timezone
+    $data[] = $_SESSION['mode'];    //registers the mode
+    $data[] = $_SESSION['chosenmult'];  //registers the multiplier of the problem
+    $data[] = $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
+    $data[] = "juste";  //registers that the user answered right
+    $data[] = $_SESSION['timestop'] - $_SESSION['timestart'];   //registers the time it took to finish the problem
+    $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
+    fputcsv($handle, $data);    //writes the data[] array in stats.csv
+    fclose($handle);    //closes stats.csv
+}
+
+function registerstatswrong()
+{
+    $data = []; //transforms data in array
+    $data[] = $_COOKIE['user']; //uses to username set by the cookie to register to help identify datas to their users
+    $data[] = date('j-n-y');    //registers the date
+    $data[] = date('H:i:s:e');  //registers the hour and the timezone
+    $data[] = $_SESSION['mode'];    //registers the mode
+    $data[] = $_SESSION['chosenmult'];  //registers the multiplier of the problem
+    $data[] = $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
+    $data[] = "faux"; //registers that the user answered wrong
+    $data[] = $_SESSION['timestop'] - $_SESSION['timestart'];   //registers the time it took to finish the problem
+    $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
+    fputcsv($handle, $data);    //writes the data[] array in stats.csv
+    fclose($handle);    //closes stats.csv
+}
+
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -38,19 +66,22 @@ $seconds = $timetaken;
 <!-- Banner -->
 <section id="banner">
     <ul class="actions">
-        <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
+        <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b><?php
             $result = $_SESSION['trueanswer'];
             if (!empty($_POST['true']) && ($seconds + $minutes != 0)) {
                 echo "Bravo! La réponse était bien <u>$result</u> </br> Tu as trouvé en $minutes:$seconds";
-
+                registerstatsright();
             } else if (!empty($_POST['wrong'])) {
                 echo "<u>Dommage... La réponse était $result</u>";
+                registerstatswrong();
             } else if (!is_null($_POST['true']) && ($seconds + $minutes != 0)) { //we need this 'else if' for when trueanswer=0 because otherwise, $_POST['true'] is "empty"
                 echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en $minutes:$seconds";
+                registerstatsright();
             } else {
                 echo "Bravo! La réponse était bien <u>$result</u></br> Tu as trouvé en moins d'une seconde!";
+                registerstatsright();
             }
             ?></b></p>
     <ul class="actions">

@@ -1,17 +1,9 @@
 <?php
 //start session to use and store datas
 session_start();
-function delchoice()
-{
-    session_destroy();
-}
 
-$_SESSION['mode'] = 5;
+$_SESSION['mode'] = "5sec";
 $_SESSION['timestart'] = time();
-function submit()
-{
-    $_POST['click'] = "click";
-}
 
 ?>
 <!DOCTYPE HTML>
@@ -50,7 +42,7 @@ function submit()
 <!-- Banner -->
 <section id="banner" onload="<?php header("refresh:5;url=five-result.php"); ?>">
     <ul class="actions">
-        <li><a href="index.php" class="button special" onclick="delchoice()">Retour au menu</a></li>
+        <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b>   <?php
             $randmult = rand(0, 12);
@@ -62,11 +54,13 @@ function submit()
             }
             $_SESSION['answerfive'] = $randmult * $randlivret;
             echo "$randmult x $randlivret = ?";
-            $_SESSION['randmult'] = $randmult;
-            $_SESSION['randlivret'] = $randlivret;
+            $chosenmult = $randmult;
+            $_SESSION['chosenmult'] = $chosenmult;
+            $chosenlivret = $randlivret;
+            $_SESSION['chosenlivret'] = $chosenlivret;
             ?> </b></p>
 
-    <form name=frm method=post action="five-result.php">
+    <form method=post action="five-result.php">
         <input type='submit' name='click' value="5" class='button special'>
     </form>
 </section>
