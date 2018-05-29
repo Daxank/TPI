@@ -2,7 +2,7 @@
 if ($_COOKIE['user'] != null) {
 } else {
     $name = md5(time());
-    setcookie('user', $name, time() + 365 * 24 * 3600, null, null, false, true);
+    setcookie('user', $name, time() + 365 * 24 * 3600, null, null, false, true); //set cookie user to expire after 1 year
     header("Refresh:0"); //refresh page to avoid showing error for $_COOKIE['user'] being undefined
 }
 session_start();

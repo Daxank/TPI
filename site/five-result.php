@@ -2,7 +2,15 @@
 //start session to use and store datas
 session_start();
 
-$_SESSION['timestop'] = time();
+if (isset($_GET['true']) || isset($_GET['wrong'])) {    //that way we don't reset timestop by coming back to the page when we press the "wrong" or "right" buttons
+} else {
+    $_SESSION['timestop'] = time();
+    while ($_SESSION['timestop']-$_SESSION['timestart']>5) //sometimes the refresh will return 6 seconds or higher (due to load times), since this value shouldn't be possible in the 5 seconds mode, we reduce it to 5
+    {
+        $_SESSION['timestop']--;
+    }
+}
+
 ?>
 <!DOCTYPE HTML>
 <!--

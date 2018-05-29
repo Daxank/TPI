@@ -27,6 +27,17 @@ session_start();
         <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>
     <p><b><u>Statistiques</u></b></p>
+    <?php
+    $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
+    $data = fgetcsv($handle, 1000, ',');
+    $id = $_COOKIE['user'];
+    $count=0;
+    while ($id == $data[0]) {
+        $count++;
+    }
+    fclose ($handle);
+    echo "$count";
+    ?>
     XX justes</br>
     XX Faux</br></br>
     Livret du 0 : X% de bonnes réponses</br>

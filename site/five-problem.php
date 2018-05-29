@@ -60,7 +60,7 @@ $_SESSION['timestart'] = time();
             $_SESSION['chosenlivret'] = $chosenlivret;
             ?> </b></p>
 
-    <form method=post action="five-result.php">
+    <form name="frm" method=post action="five-result.php">
         <input type='submit' name='click' value="5" class='button special'>
     </form>
 </section>
