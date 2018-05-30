@@ -28,18 +28,42 @@ session_start();
     </ul>
     <p><b><u>Statistiques</u></b></p>
     <?php
-    $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
-    $data = fgetcsv($handle, 1000, ',');
+    $countright = 0;
+    $countrwong = 0;
+    $i = 0;
+    $livretjuste = "livret".$i.",juste";
+    $livretfaux = "livret".$i.",faux";
+    $ZEROright = 0;
+    $ZEROwrong = 0;
     $id = $_COOKIE['user'];
-    $count=0;
-    while ($id == $data[0]) {
-        $count++;
+    if (($handle = fopen('stats.csv', 'a+')) !== false) {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            if (in_array($id, $data, true)) {
+                $userdata[] = $data;    //puts data from CSV into userdata only if it's the user's data
+                if (in_array($livretjuste, $userdata)) {
+                    $countright++;
+                    $ZEROright++;
+                }
+                if (in_array($livretfaux, $userdata)) {
+                    $countrwong++;
+                    $ZEROwrong++;
+                }
+            }
+
+        }
     }
-    fclose ($handle);
-    echo "$count";
+    if (isset($userdata)) {
+        echo "$countright Justes</br>";
+        echo "$countrwong Faux</br></br>";
+        var_dump($userdata);
+
+    } else {
+        echo "Tu n’as pas encore fais de partie, vas jouer ! ";
+    }
+    fclose($handle);
+
     ?>
-    XX justes</br>
-    XX Faux</br></br>
+
     Livret du 0 : X% de bonnes réponses</br>
     Livret du 1 : X% de bonnes réponses</br>
     Livret du 2 : X% de bonnes réponses</br>

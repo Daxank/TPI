@@ -5,7 +5,7 @@ session_start();
 if (isset($_GET['true']) || isset($_GET['wrong'])) {    //that way we don't reset timestop by coming back to the page when we press the "wrong" or "right" buttons
 } else {
     $_SESSION['timestop'] = time();
-    while ($_SESSION['timestop']-$_SESSION['timestart']>5) //sometimes the refresh will return 6 seconds or higher (due to load times), since this value shouldn't be possible in the 5 seconds mode, we reduce it to 5
+    while ($_SESSION['timestop'] - $_SESSION['timestart'] > 5) //sometimes the refresh will return 6 seconds or higher (due to load times), since this value shouldn't be possible in the 5 seconds mode, we reduce it to 5
     {
         $_SESSION['timestop']--;
     }
@@ -27,8 +27,8 @@ function registerstatsright()
     $data[] = date('j-n-y');    //registers the date
     $data[] = date('H:i:s:e');  //registers the hour and the timezone
     $data[] = $_SESSION['mode'];    //registers the mode
-    $data[] = $_SESSION['chosenmult'];  //registers the multiplier of the problem
-    $data[] = $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
+    $data[] = "mult" . $_SESSION['chosenmult'];  //registers the multiplier of the problem
+    $data[] = "livret" . $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
     $data[] = "juste";  //registers that the user answered right
     $data[] = $_SESSION['timestop'] - $_SESSION['timestart'];   //registers the time it took to finish the problem
     $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
@@ -44,8 +44,8 @@ function registerstatswrong()
     $data[] = date('j-n-y');    //registers the date
     $data[] = date('H:i:s:e');  //registers the hour and the timezone
     $data[] = $_SESSION['mode'];    //registers the mode
-    $data[] = $_SESSION['chosenmult'];  //registers the multiplier of the problem
-    $data[] = $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
+    $data[] = "mult" . $_SESSION['chosenmult'];  //registers the multiplier of the problem
+    $data[] = "livret" . $_SESSION['chosenlivret'];    //registers which one of the choices from the user was picked for the multiplication problem
     $data[] = "faux"; //registers that the user answered wrong
     $data[] = $_SESSION['timestop'] - $_SESSION['timestart'];   //registers the time it took to finish the problem
     $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
