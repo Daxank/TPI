@@ -2904,8 +2904,3 @@ dl dd {
 ul.alt li {
     border-top-color: #e3e3e3;
 }
-
-[type="checkbox"] {
-    height: 5%;
-    width: 5%;
-}

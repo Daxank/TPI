@@ -32,6 +32,9 @@ $_SESSION['timestart'] = time();
             document.frm.submit.value = seconds;
             setTimeout('decreaseTime()', 1000);
         }
+        window.setTimeout(function () {  //this timeout function is only needed to use the website online, for the offline version you can use the php code in the header below
+            window.location.href = "http://multiplix.mycpnv.ch/five-result.php";
+        }, 5000);
     </script>
     <link rel="stylesheet" href="assets/css/main.css"/>
     <!--[if lte IE 9]>
@@ -40,7 +43,7 @@ $_SESSION['timestart'] = time();
 <body>
 
 <!-- Banner -->
-<section id="banner" onload="<?php header("refresh:5;url=five-result.php"); ?>">
+<section id="banner"> <!-- for local use onload="?php header("refresh:5;url=five-result.php"); ?" -->
     <ul class="actions">
         <li><a href="index.php" class="button special">Retour au menu</a></li>
     </ul>

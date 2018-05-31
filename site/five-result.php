@@ -34,7 +34,8 @@ function registerstatsright()
     $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
     fputcsv($handle, $data);    //writes the data[] array in stats.csv
     fclose($handle);    //closes stats.csv
-    header('Location: five-problem.php');
+    echo '<script>window.location="http://multiplix.mycpnv.ch/five-problem.php";</script>';
+    //for local use header('Location: five-problem.php');
 }
 
 function registerstatswrong()
@@ -51,7 +52,8 @@ function registerstatswrong()
     $handle = fopen('stats.csv', 'a+'); //opens stats.csv in write and read and creates it if it doesn't exist
     fputcsv($handle, $data);    //writes the data[] array in stats.csv
     fclose($handle);    //closes stats.csv
-    header('Location: five-problem.php');
+    echo '<script>window.location="http://multiplix.mycpnv.ch/five-problem.php";</script>';
+    //for local use header('Location: five-problem.php');
 }
 
 if (isset($_GET['true'])) {
@@ -96,7 +98,9 @@ if (isset($_GET['true'])) {
             ?></b></p>
     <ul class="actions">
         <li><a href="five-result.php?true=true" class="button special">J'ai juste!</a></li>
+        <!-- for local use five-result.php?true=true -->
         <li><a href="five-result.php?wrong=true" class="button special">J'ai faux...</a></li>
+        <!-- for local use five-result.php?wrong=true -->
     </ul>
 </section>
 <!-- Scripts -->
