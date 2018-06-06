@@ -78,7 +78,7 @@ if (isset($_GET['true'])) {
 <section id="banner">
     <ul class="actions">
         <li><a href="index.php" class="button special">Retour au menu</a></li>
-        <li><a href="stats.php" class="button special">Voir les statistiques</a></li>
+        <li><a href="stats.php?five-result=true" class="button special">Voir les statistiques</a></li>
     </ul>
     <p><b><?php
             $result = $_SESSION['answerfive'];
@@ -99,9 +99,7 @@ if (isset($_GET['true'])) {
             ?></b></p>
     <ul class="actions">
         <li><a href="five-result.php?true=true" class="button special">J'ai juste!</a></li>
-        <!-- for local use five-result.php?true=true -->
         <li><a href="five-result.php?wrong=true" class="button special">J'ai faux...</a></li>
-        <!-- for local use five-result.php?wrong=true -->
     </ul>
 </section>
 <!-- Scripts -->

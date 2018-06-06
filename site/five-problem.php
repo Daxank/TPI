@@ -46,7 +46,7 @@ $_SESSION['timestart'] = time();
 <section id="banner"> <!-- for local use onload="?php header("refresh:5;url=five-result.php"); ?" -->
     <ul class="actions">
         <li><a href="index.php" class="button special">Retour au menu</a></li>
-        <li><a href="stats.php" class="button special">Voir les statistiques</a></li>
+        <li><a href="stats.php?five-problem=true" class="button special">Voir les statistiques</a></li>
     </ul>
     <p><b>   <?php
             $randmult = rand(0, 12);

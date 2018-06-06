@@ -1,6 +1,22 @@
 <?php
 //start session to use and store datas
 session_start();
+if (isset($_GET['five'])) {    //gets the set value to generate the link to go back to our work
+    $link = "five.php";
+    $name = "Retour au choix";
+}
+if (isset($_GET['five-problem']) || isset($_GET['five-result'])) {
+    $link = "five-problem.php";
+    $name = "Retour au jeu";
+}
+if (isset($_GET['free'])) {
+    $link = "free.php";
+    $name = "Retour au choix";
+}
+if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
+    $link = "free-problem.php";
+    $name = "Retour au jeu";
+}
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -25,8 +41,12 @@ session_start();
 <section id="banner">
     <ul class="actions">
         <li><a href="index.php" class="button special">Retour au menu</a></li>
+        <?php
+        if (isset ($link)) {
+            echo "<li><a href='$link' class='button special'>$name</a></li>";
+        } ?>
     </ul>
-    <p><b><u>Statistiques</u></b></p>
+    <p><b><u> Statistiques</u></b></p>
     <?php
     $countright = 0;
     $countwrong = 0;
@@ -279,12 +299,12 @@ session_start();
             $PERCENTZERO5 = 0;
             if ($ZEROwrong == 0 && $ZEROright != 0) {
                 $PERCENTZERO = 100;
-            } elseif ($ZEROwrong != 0 && $ZEROright !=0) {
+            } elseif ($ZEROwrong != 0 && $ZEROright != 0) {
                 $PERCENTZERO = ($ZEROright / ($ZEROright + $ZEROwrong)) * 100;
             }
             if ($ZEROwrong5 == 0 && $ZEROright5 != 0) {
                 $PERCENTZERO5 = 100;
-            } elseif ($ZEROwrong5 != 0 && $ZEROright5 !=0) {
+            } elseif ($ZEROwrong5 != 0 && $ZEROright5 != 0) {
                 $PERCENTZERO5 = ($ZEROright5 / ($ZEROright5 + $ZEROwrong5)) * 100;
             }
             echo "Livret de 0: ";
@@ -297,12 +317,12 @@ session_start();
             $PERCENTONE5 = 0;
             if ($ONEwrong == 0 && $ONEright != 0) {
                 $PERCENTONE = 100;
-            } elseif ($ONEwrong != 0 && $ONEright !=0) {
+            } elseif ($ONEwrong != 0 && $ONEright != 0) {
                 $PERCENTONE = ($ONEright / ($ONEright + $ONEwrong)) * 100;
             }
             if ($ONEwrong5 == 0 && $ONEright5 != 0) {
                 $PERCENTONE5 = 100;
-            } elseif ($ONEwrong5 != 0 && $ONEright5 !=0) {
+            } elseif ($ONEwrong5 != 0 && $ONEright5 != 0) {
                 $PERCENTONE5 = ($ONEright5 / ($ONEright5 + $ONEwrong5)) * 100;
             }
             echo "Livret de 1: ";
@@ -315,12 +335,12 @@ session_start();
             $PERCENTTWO5 = 0;
             if ($TWOwrong == 0 && $TWOright != 0) {
                 $PERCENTTWO = 100;
-            } elseif ($TWOwrong != 0 && $TWOright !=0) {
+            } elseif ($TWOwrong != 0 && $TWOright != 0) {
                 $PERCENTTWO = ($TWOright / ($TWOright + $TWOwrong)) * 100;
             }
             if ($TWOwrong5 == 0 && $TWOright5 != 0) {
                 $PERCENTTWO5 = 100;
-            } elseif ($TWOwrong5 != 0 && $TWOright5 !=0) {
+            } elseif ($TWOwrong5 != 0 && $TWOright5 != 0) {
                 $PERCENTTWO5 = ($TWOright5 / ($TWOright5 + $TWOwrong5)) * 100;
             }
             echo "Livret de 2: ";
@@ -333,12 +353,12 @@ session_start();
             $PERCENTTHREE5 = 0;
             if ($THREEwrong == 0 && $THREEright != 0) {
                 $PERCENTTHREE = 100;
-            } elseif ($THREEwrong != 0 && $THREEright !=0) {
+            } elseif ($THREEwrong != 0 && $THREEright != 0) {
                 $PERCENTTHREE = ($THREEright / ($THREEright + $THREEwrong)) * 100;
             }
             if ($THREEwrong5 == 0 && $THREEright5 != 0) {
                 $PERCENTTHREE5 = 100;
-            } elseif ($THREEwrong5 != 0 && $THREEright5 !=0) {
+            } elseif ($THREEwrong5 != 0 && $THREEright5 != 0) {
                 $PERCENTTHREE5 = ($THREEright5 / ($THREEright5 + $THREEwrong5)) * 100;
             }
             echo "Livret de 3: ";
@@ -351,12 +371,12 @@ session_start();
             $PERCENTFOUR5 = 0;
             if ($FOURwrong == 0 && $FOURright != 0) {
                 $PERCENTFOUR = 100;
-            } elseif ($FOURwrong != 0 && $FOURright !=0) {
+            } elseif ($FOURwrong != 0 && $FOURright != 0) {
                 $PERCENTFOUR = ($FOURright / ($FOURright + $FOURwrong)) * 100;
             }
             if ($FOURwrong5 == 0 && $FOURright5 != 0) {
                 $PERCENTFOUR5 = 100;
-            } elseif ($FOURwrong5 != 0 && $FOURright5 !=0) {
+            } elseif ($FOURwrong5 != 0 && $FOURright5 != 0) {
                 $PERCENTFOUR5 = ($FOURright5 / ($FOURright5 + $FOURwrong5)) * 100;
             }
             echo "Livret de 4: ";
@@ -369,12 +389,12 @@ session_start();
             $PERCENTFIVE5 = 0;
             if ($FIVEwrong == 0 && $FIVEright != 0) {
                 $PERCENTFIVE = 100;
-            } elseif ($FIVEwrong != 0 && $FIVEright !=0) {
+            } elseif ($FIVEwrong != 0 && $FIVEright != 0) {
                 $PERCENTFIVE = ($FIVEright / ($FIVEright + $FIVEwrong)) * 100;
             }
             if ($FIVEwrong5 == 0 && $FIVEright5 != 0) {
                 $PERCENTFIVE5 = 100;
-            } elseif ($FIVEwrong5 != 0 && $FIVEright5 !=0) {
+            } elseif ($FIVEwrong5 != 0 && $FIVEright5 != 0) {
                 $PERCENTFIVE5 = ($FIVEright5 / ($FIVEright5 + $FIVEwrong5)) * 100;
             }
             echo "Livret de 5: ";
@@ -387,12 +407,12 @@ session_start();
             $PERCENTSIX5 = 0;
             if ($SIXwrong == 0 && $SIXright != 0) {
                 $PERCENTSIX = 100;
-            } elseif ($SIXwrong != 0 && $SIXright !=0) {
+            } elseif ($SIXwrong != 0 && $SIXright != 0) {
                 $PERCENTSIX = ($SIXright / ($SIXright + $SIXwrong)) * 100;
             }
             if ($SIXwrong5 == 0 && $SIXright5 != 0) {
                 $PERCENTSIX5 = 100;
-            } elseif ($SIXwrong5 != 0 && $SIXright5 !=0) {
+            } elseif ($SIXwrong5 != 0 && $SIXright5 != 0) {
                 $PERCENTSIX5 = ($SIXright5 / ($SIXright5 + $SIXwrong5)) * 100;
             }
             echo "Livret de 6: ";
@@ -405,12 +425,12 @@ session_start();
             $PERCENTSEVEN5 = 0;
             if ($SEVENwrong == 0 && $SEVENright != 0) {
                 $PERCENTSEVEN = 100;
-            } elseif ($SEVENwrong != 0 && $SEVENright !=0) {
+            } elseif ($SEVENwrong != 0 && $SEVENright != 0) {
                 $PERCENTSEVEN = ($SEVENright / ($SEVENright + $SEVENwrong)) * 100;
             }
             if ($SEVENwrong5 == 0 && $SEVENright5 != 0) {
                 $PERCENTSEVEN5 = 100;
-            } elseif ($SEVENwrong5 != 0 && $SEVENright5 !=0) {
+            } elseif ($SEVENwrong5 != 0 && $SEVENright5 != 0) {
                 $PERCENTSEVEN5 = ($SEVENright5 / ($SEVENright5 + $SEVENwrong5)) * 100;
             }
             echo "Livret de 7: ";
@@ -423,12 +443,12 @@ session_start();
             $PERCENTEIGHT5 = 0;
             if ($EIGHTwrong == 0 && $EIGHTright != 0) {
                 $PERCENTEIGHT = 100;
-            } elseif ($EIGHTwrong != 0 && $EIGHTright !=0) {
+            } elseif ($EIGHTwrong != 0 && $EIGHTright != 0) {
                 $PERCENTEIGHT = ($EIGHTright / ($EIGHTright + $EIGHTwrong)) * 100;
             }
             if ($EIGHTwrong5 == 0 && $EIGHTright5 != 0) {
                 $PERCENTEIGHT5 = 100;
-            } elseif ($EIGHTwrong5 != 0 && $EIGHTright5 !=0) {
+            } elseif ($EIGHTwrong5 != 0 && $EIGHTright5 != 0) {
                 $PERCENTEIGHT5 = ($EIGHTright5 / ($EIGHTright5 + $EIGHTwrong5)) * 100;
             }
             echo "Livret de 8: ";
@@ -441,12 +461,12 @@ session_start();
             $PERCENTNINE5 = 0;
             if ($NINEwrong == 0 && $NINEright != 0) {
                 $PERCENTNINE = 100;
-            } elseif ($NINEwrong != 0 && $NINEright !=0) {
+            } elseif ($NINEwrong != 0 && $NINEright != 0) {
                 $PERCENTNINE = ($NINEright / ($NINEright + $NINEwrong)) * 100;
             }
             if ($NINEwrong5 == 0 && $NINEright5 != 0) {
                 $PERCENTNINE5 = 100;
-            } elseif ($NINEwrong5 != 0 && $NINEright5 !=0) {
+            } elseif ($NINEwrong5 != 0 && $NINEright5 != 0) {
                 $PERCENTNINE5 = ($NINEright5 / ($NINEright5 + $NINEwrong5)) * 100;
             }
             echo "Livret de 9: ";
@@ -459,12 +479,12 @@ session_start();
             $PERCENTTEN5 = 0;
             if ($TENwrong == 0 && $TENright != 0) {
                 $PERCENTTEN = 100;
-            } elseif ($TENwrong != 0 && $TENright !=0) {
+            } elseif ($TENwrong != 0 && $TENright != 0) {
                 $PERCENTTEN = ($TENright / ($TENright + $TENwrong)) * 100;
             }
             if ($TENwrong5 == 0 && $TENright5 != 0) {
                 $PERCENTTEN5 = 100;
-            } elseif ($TENwrong5 != 0 && $TENright5 !=0) {
+            } elseif ($TENwrong5 != 0 && $TENright5 != 0) {
                 $PERCENTTEN5 = ($TENright5 / ($TENright5 + $TENwrong5)) * 100;
             }
             echo "Livret de 10: ";
@@ -477,12 +497,12 @@ session_start();
             $PERCENTELEVEN5 = 0;
             if ($ELEVENwrong == 0 && $ELEVENright != 0) {
                 $PERCENTELEVEN = 100;
-            } elseif ($ELEVENwrong != 0 && $ELEVENright !=0) {
+            } elseif ($ELEVENwrong != 0 && $ELEVENright != 0) {
                 $PERCENTELEVEN = ($ELEVENright / ($ELEVENright + $ELEVENwrong)) * 100;
             }
             if ($ELEVENwrong5 == 0 && $ELEVENright5 != 0) {
                 $PERCENTELEVEN5 = 100;
-            } elseif ($ELEVENwrong5 != 0 && $ELEVENright5 !=0) {
+            } elseif ($ELEVENwrong5 != 0 && $ELEVENright5 != 0) {
                 $PERCENTELEVEN5 = ($ELEVENright5 / ($ELEVENright5 + $ELEVENwrong5)) * 100;
             }
             echo "Livret de 11: ";
@@ -495,12 +515,12 @@ session_start();
             $PERCENTTWELVE5 = 0;
             if ($TWELVEwrong == 0 && $TWELVEright != 0) {
                 $PERCENTTWELVE = 100;
-            } elseif ($TWELVEwrong != 0 && $TWELVEright !=0) {
+            } elseif ($TWELVEwrong != 0 && $TWELVEright != 0) {
                 $PERCENTTWELVE = ($TWELVEright / ($TWELVEright + $TWELVEwrong)) * 100;
             }
             if ($TWELVEwrong5 == 0 && $TWELVEright5 != 0) {
                 $PERCENTTWELVE5 = 100;
-            } elseif ($TWELVEwrong5 != 0 && $TWELVEright5 !=0) {
+            } elseif ($TWELVEwrong5 != 0 && $TWELVEright5 != 0) {
                 $PERCENTTWELVE5 = ($TWELVEright5 / ($TWELVEright5 + $TWELVEwrong5)) * 100;
             }
             echo "Livret de 12: ";

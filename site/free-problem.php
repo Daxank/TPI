@@ -28,7 +28,7 @@ $_SESSION['mode'] = "free";
 <section id="banner">
     <ul class="actions">
         <li><a href="index.php" class="button special">Retour au menu</a></li>
-        <li><a href="stats.php" class="button special">Voir les statistiques</a></li>
+        <li><a href="stats.php?free-problem=true" class="button special">Voir les statistiques</a></li>
     </ul>
     <p><b>   <?php
             $randmult = rand(0, 12);
