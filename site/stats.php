@@ -293,7 +293,8 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             echo "Global : ";
             echo(round($PERCENTGLOBAL));
             echo " % de bonnes réponses </br ></br >";
-            echo " Mode libre | Mode 5 secondes</br >";
+            echo " Pourcentages de bonnes réponses pour:</br >";
+            echo " <b>Mode libre</b> | <u>Mode 5 secondes</u></br >";
         }
         if ($ZEROright != 0 || $ZEROwrong != 0 || $ZEROright5 != 0 || $ZEROwrong5 != 0) {
             $PERCENTZERO5 = 0;
@@ -307,11 +308,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($ZEROwrong5 != 0 && $ZEROright5 != 0) {
                 $PERCENTZERO5 = ($ZEROright5 / ($ZEROright5 + $ZEROwrong5)) * 100;
             }
-            echo "Livret de 0: ";
+            echo "Livret de 0: <b>";
             echo(round($PERCENTZERO));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTZERO5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($ONEright != 0 || $ONEwrong != 0 || $ONEright5 != 0 || $ONEwrong5 != 0) {
             $PERCENTONE5 = 0;
@@ -325,11 +326,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($ONEwrong5 != 0 && $ONEright5 != 0) {
                 $PERCENTONE5 = ($ONEright5 / ($ONEright5 + $ONEwrong5)) * 100;
             }
-            echo "Livret de 1: ";
+            echo "Livret de 1: <b>";
             echo(round($PERCENTONE));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTONE5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($TWOright != 0 || $TWOwrong != 0 || $TWOright5 != 0 || $TWOwrong5 != 0) {
             $PERCENTTWO5 = 0;
@@ -343,11 +344,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($TWOwrong5 != 0 && $TWOright5 != 0) {
                 $PERCENTTWO5 = ($TWOright5 / ($TWOright5 + $TWOwrong5)) * 100;
             }
-            echo "Livret de 2: ";
+            echo "Livret de 2: <b>";
             echo(round($PERCENTTWO));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTTWO5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($THREEright != 0 || $THREEwrong != 0 || $THREEright5 != 0 || $THREEwrong5 != 0) {
             $PERCENTTHREE5 = 0;
@@ -361,11 +362,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($THREEwrong5 != 0 && $THREEright5 != 0) {
                 $PERCENTTHREE5 = ($THREEright5 / ($THREEright5 + $THREEwrong5)) * 100;
             }
-            echo "Livret de 3: ";
+            echo "Livret de 3: <b>";
             echo(round($PERCENTTHREE));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTTHREE5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($FOURright != 0 || $FOURwrong != 0 || $FOURright5 != 0 || $FOURwrong5 != 0) {
             $PERCENTFOUR5 = 0;
@@ -379,11 +380,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($FOURwrong5 != 0 && $FOURright5 != 0) {
                 $PERCENTFOUR5 = ($FOURright5 / ($FOURright5 + $FOURwrong5)) * 100;
             }
-            echo "Livret de 4: ";
+            echo "Livret de 4: <b>";
             echo(round($PERCENTFOUR));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTFOUR5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($FIVEright != 0 || $FIVEwrong != 0 || $FIVEright5 != 0 || $FIVEwrong5 != 0) {
             $PERCENTFIVE5 = 0;
@@ -397,11 +398,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($FIVEwrong5 != 0 && $FIVEright5 != 0) {
                 $PERCENTFIVE5 = ($FIVEright5 / ($FIVEright5 + $FIVEwrong5)) * 100;
             }
-            echo "Livret de 5: ";
+            echo "Livret de 5: <b>";
             echo(round($PERCENTFIVE));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTFIVE5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($SIXright != 0 || $SIXwrong != 0 || $SIXright5 != 0 || $SIXwrong5 != 0) {
             $PERCENTSIX5 = 0;
@@ -415,11 +416,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($SIXwrong5 != 0 && $SIXright5 != 0) {
                 $PERCENTSIX5 = ($SIXright5 / ($SIXright5 + $SIXwrong5)) * 100;
             }
-            echo "Livret de 6: ";
+            echo "Livret de 6: <b>";
             echo(round($PERCENTSIX));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTSIX5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($SEVENright != 0 || $SEVENwrong != 0 || $SEVENright5 != 0 || $SEVENwrong5 != 0) {
             $PERCENTSEVEN5 = 0;
@@ -433,11 +434,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($SEVENwrong5 != 0 && $SEVENright5 != 0) {
                 $PERCENTSEVEN5 = ($SEVENright5 / ($SEVENright5 + $SEVENwrong5)) * 100;
             }
-            echo "Livret de 7: ";
+            echo "Livret de 7: <b>";
             echo(round($PERCENTSEVEN));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTSEVEN5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($EIGHTright != 0 || $EIGHTwrong != 0 || $EIGHTright5 != 0 || $EIGHTwrong5 != 0) {
             $PERCENTEIGHT5 = 0;
@@ -451,11 +452,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($EIGHTwrong5 != 0 && $EIGHTright5 != 0) {
                 $PERCENTEIGHT5 = ($EIGHTright5 / ($EIGHTright5 + $EIGHTwrong5)) * 100;
             }
-            echo "Livret de 8: ";
+            echo "Livret de 8: <b>";
             echo(round($PERCENTEIGHT));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTEIGHT5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($NINEright != 0 || $NINEwrong != 0 || $NINEright5 != 0 || $NINEwrong5 != 0) {
             $PERCENTNINE5 = 0;
@@ -469,11 +470,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($NINEwrong5 != 0 && $NINEright5 != 0) {
                 $PERCENTNINE5 = ($NINEright5 / ($NINEright5 + $NINEwrong5)) * 100;
             }
-            echo "Livret de 9: ";
+            echo "Livret de 9: <b>";
             echo(round($PERCENTNINE));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTNINE5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($TENright != 0 || $TENwrong != 0 || $TENright5 != 0 || $TENwrong5 != 0) {
             $PERCENTTEN5 = 0;
@@ -487,11 +488,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($TENwrong5 != 0 && $TENright5 != 0) {
                 $PERCENTTEN5 = ($TENright5 / ($TENright5 + $TENwrong5)) * 100;
             }
-            echo "Livret de 10: ";
+            echo "Livret de 10: <b>";
             echo(round($PERCENTTEN));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTTEN5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($ELEVENright != 0 || $ELEVENwrong != 0 || $ELEVENright5 != 0 || $ELEVENwrong5 != 0) {
             $PERCENTELEVEN5 = 0;
@@ -505,11 +506,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($ELEVENwrong5 != 0 && $ELEVENright5 != 0) {
                 $PERCENTELEVEN5 = ($ELEVENright5 / ($ELEVENright5 + $ELEVENwrong5)) * 100;
             }
-            echo "Livret de 11: ";
+            echo "Livret de 11: <b>";
             echo(round($PERCENTELEVEN));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTELEVEN5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         if ($TWELVEright != 0 || $TWELVEwrong != 0 || $TWELVEright5 != 0 || $TWELVEwrong5 != 0) {
             $PERCENTTWELVE5 = 0;
@@ -523,11 +524,11 @@ if (isset($_GET['free-problem']) || isset($_GET['free-result'])) {
             } elseif ($TWELVEwrong5 != 0 && $TWELVEright5 != 0) {
                 $PERCENTTWELVE5 = ($TWELVEright5 / ($TWELVEright5 + $TWELVEwrong5)) * 100;
             }
-            echo "Livret de 12: ";
+            echo "Livret de 12: <b>";
             echo(round($PERCENTTWELVE));
-            echo "% | ";
+            echo "%</b> | <u>";
             echo(round($PERCENTTWELVE5));
-            echo "% de bonnes réponses </br >";
+            echo "%</u></br >";
         }
         echo "<form method=post action='index.php'>";
         echo "</br >";
